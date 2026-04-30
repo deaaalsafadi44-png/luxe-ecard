@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f5f5dc;
+  --foreground: #4b3621;
+  --royal-cream: #f5f5dc;
+  --royal-gold: #d4af37;
+  --royal-brown: #4b3621;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-royal-cream: var(--royal-cream);
+  --color-royal-gold: var(--royal-gold);
+  --color-royal-brown: var(--royal-brown);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* Mobile: no horizontal bleed, readable text scaling, safe areas */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+  min-height: 100dvh;
+  min-height: 100vh;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Touch targets: links/buttons in prose feel tappable */
+@layer utilities {
+  .touch-target {
+    min-height: 2.75rem;
+    min-width: 2.75rem;
+  }
+
+  .app-safe-x {
+    padding-left: max(1rem, env(safe-area-inset-left, 0px));
+    padding-right: max(1rem, env(safe-area-inset-right, 0px));
+  }
+
+  .invitation-noise {
+    opacity: 0.055;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 180px 180px;
+  }
+}
+
+@keyframes invitation-twinkle {
+  0%,
+  100% {
+    opacity: 0.18;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.35);
+  }
+}
+
+.invitation-particle {
+  animation-name: invitation-twinkle;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes invitation-confetti-fall {
+  from {
+    transform: translateY(-8vh) rotate(0deg);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(110vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+.invitation-confetti-fall {
+  animation: invitation-confetti-fall 2.85s ease-in forwards;
+}
+
+/* Swiper pagination on dark story backgrounds */
+.stories-swiper .swiper-pagination-bullet {
+  background: rgba(255, 255, 255, 0.45);
+  opacity: 1;
+}
+.stories-swiper .swiper-pagination-bullet-active {
+  background: rgba(255, 255, 255, 0.95);
+}

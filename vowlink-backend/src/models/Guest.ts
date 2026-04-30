@@ -1,0 +1,52 @@
+import { Schema, model, type Document, type Types } from "mongoose";
+
+export type AttendanceResponse = "COMING" | "NOT_COMING" | "PENDING";
+
+export interface GuestDocument extends Document {
+  invitationId: Types.ObjectId;
+  guestName: string;
+  guestSlug: string;
+  attendanceStatus: AttendanceResponse;
+  companionsCount: number;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+const GuestSchema = new Schema<GuestDocument>(
+  {
+    invitationId: {
+      type: Schema.Types.ObjectId,
+      ref: "Invitation",
+      required: true,
+      index: true,
+    },
+    guestName: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    guestSlug: {
+      type: String,
+      required: true,
+      lowercase: true,
+      trim: true,
+    },
+    attendanceStatus: {
+      type: String,
+      enum: ["COMING", "NOT_COMING", "PENDING"],
+      default: "PENDING",
+    },
+    companionsCount: {
+      type: Number,
+      min: 0,
+      default: 0,
+    },
+  },
+  {
+    timestamps: true,
+  },
+);
+
+GuestSchema.index({ invitationId: 1, guestSlug: 1 }, { unique: true });
+
+export const GuestModel = model<GuestDocument>("Guest", GuestSchema);

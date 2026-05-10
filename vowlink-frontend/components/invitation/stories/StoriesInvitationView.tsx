@@ -114,6 +114,7 @@ export function StoriesInvitationView({
 }) {
   const { t, isArabic } = useI18n();
   const [entered, setEntered] = useState(false);
+  const [introPressing, setIntroPressing] = useState(false);
   /** Mirrors media element `.muted` for button icon */
   const [musicMuted, setMusicMuted] = useState(true);
   const [galleryIndex, setGalleryIndex] = useState<number | null>(null);
@@ -187,6 +188,15 @@ export function StoriesInvitationView({
       });
       setMusicMuted(false);
     }
+  };
+
+  const handleIntroOverlayClick = () => {
+    if (entered || introPressing) return;
+    setIntroPressing(true);
+    setConfettiBurst((c) => c + 1);
+    window.setTimeout(() => {
+      handleEnter();
+    }, 420);
   };
 
   const toggleMusicMute = () => {
@@ -291,13 +301,31 @@ export function StoriesInvitationView({
         <button
           type="button"
           className="fixed inset-0 z-[45] flex flex-col items-center justify-center gap-4 bg-black/50 px-6 text-center text-white backdrop-blur-[2px]"
-          onClick={() => handleEnter()}
+          onClick={() => handleIntroOverlayClick()}
+          aria-label={t("storiesTapToEnter")}
         >
           <p className="max-w-sm text-balance text-lg font-semibold [font-family:var(--font-invitation-display),sans-serif]">
             {localizedInvitation.coupleNames}
           </p>
-          <span className="rounded-full border-2 border-white/80 bg-white/15 px-8 py-3 text-sm font-semibold uppercase tracking-widest">
-            {t("storiesTapToEnter")}
+          <span className="relative flex h-[5.5rem] w-[5.5rem] items-center justify-center" aria-hidden>
+            {introPressing ? (
+              <>
+                <span className="stories-invite-heart--ring pointer-events-none absolute h-[4.25rem] w-[4.25rem] rounded-full border-2 border-rose-200/75" />
+                <span className="stories-invite-heart--ring stories-invite-heart--ring-delay pointer-events-none absolute h-[4.25rem] w-[4.25rem] rounded-full border-2 border-white/55" />
+              </>
+            ) : null}
+            <span
+              className={`relative flex h-16 w-16 items-center justify-center rounded-full border-2 border-white/90 bg-white/20 shadow-[0_0_22px_rgba(251,113,133,0.35)] backdrop-blur-sm transition hover:bg-white/25 ${introPressing ? "stories-invite-heart--pop" : ""}`}
+            >
+              <svg
+                className="h-9 w-9 text-rose-100 drop-shadow-[0_1px_2px_rgba(0,0,0,0.35)]"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                aria-hidden
+              >
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+              </svg>
+            </span>
           </span>
           {musicUrl ? (
             <p className="max-w-xs text-xs text-white/80">{t("storiesMusicAutoplayHint")}</p>

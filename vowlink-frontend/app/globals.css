@@ -99,6 +99,44 @@ body {
   animation: invitation-confetti-fall 2.85s ease-in forwards;
 }
 
+@keyframes stories-heart-pop {
+  0% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 0 rgba(251, 113, 133, 0));
+  }
+  40% {
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 20px rgba(251, 113, 133, 0.9));
+  }
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 10px rgba(251, 113, 133, 0.45));
+  }
+}
+
+@keyframes stories-heart-ring {
+  0% {
+    transform: scale(0.55);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+.stories-invite-heart--pop {
+  animation: stories-heart-pop 0.45s ease-out forwards;
+}
+
+.stories-invite-heart--ring {
+  animation: stories-heart-ring 0.55s ease-out forwards;
+}
+
+.stories-invite-heart--ring-delay {
+  animation-delay: 0.1s;
+}
+
 /* Swiper pagination on dark story backgrounds */
 .stories-swiper .swiper-pagination-bullet {
   background: rgba(255, 255, 255, 0.45);

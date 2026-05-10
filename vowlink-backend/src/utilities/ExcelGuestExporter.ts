@@ -4,7 +4,6 @@ interface GuestRowRecord {
   guestName: string;
   guestSlug: string;
   attendanceStatus: string;
-  companionsCount: number;
 }
 
 export const excelGuestExporter = {
@@ -14,7 +13,6 @@ export const excelGuestExporter = {
         "Guest Name": record.guestName,
         "Guest Slug": record.guestSlug,
         "Attendance Status": record.attendanceStatus,
-        Companions: record.companionsCount,
       })),
     );
     const workbook = XLSX.utils.book_new();

@@ -24,10 +24,6 @@ export const dashboardAnalyticsService = {
       const pendingGuests = guests.filter(
         (guestRecord) => guestRecord.attendanceStatus === "PENDING",
       ).length;
-      const totalCompanions = guests.reduce(
-        (accumulator, guestRecord) => accumulator + guestRecord.companionsCount,
-        0,
-      );
 
       return {
         invitation,
@@ -36,7 +32,6 @@ export const dashboardAnalyticsService = {
           comingGuests,
           notComingGuests,
           pendingGuests,
-          totalCompanions,
         },
         guests,
       };
@@ -61,10 +56,6 @@ export const dashboardAnalyticsService = {
     const pendingGuests = guests.filter(
       (guestRecord) => guestRecord.attendanceStatus === "PENDING",
     ).length;
-    const totalCompanions = guests.reduce(
-      (accumulator, guestRecord) => accumulator + guestRecord.companionsCount,
-      0,
-    );
 
     return {
       invitation,
@@ -73,7 +64,6 @@ export const dashboardAnalyticsService = {
         comingGuests,
         notComingGuests,
         pendingGuests,
-        totalCompanions,
       },
       guests,
     };

@@ -63,8 +63,8 @@ export default function CoupleDashboardPage() {
   const [guestsLoading, setGuestsLoading] = useState(false);
   const [rsvp, setRsvp] = useState<RsvpDashboardPayload | null>(null);
   const [rsvpLoading, setRsvpLoading] = useState(false);
-  /** Expanded RSVP detail: attendance lists or companions per guest */
-  const [rsvpPanel, setRsvpPanel] = useState<null | "attendance" | "companions">(null);
+  /** Expanded RSVP detail: attendance lists */
+  const [rsvpPanel, setRsvpPanel] = useState<null | "attendance">(null);
   const [newGuestName, setNewGuestName] = useState("");
   const [copyHint, setCopyHint] = useState<string | null>(null);
 
@@ -740,25 +740,9 @@ export default function CoupleDashboardPage() {
                     />
                     <StatCard label={t("notComing")} value={rsvp.stats.notComingGuests} />
                     <StatCard label={t("pending")} value={rsvp.stats.pendingGuests} />
-                    <StatCard
-                      label={t("companions")}
-                      value={rsvp.stats.totalCompanions}
-                      interactive
-                      active={rsvpPanel === "companions"}
-                      onClick={() =>
-                        setRsvpPanel((p) => (p === "companions" ? null : "companions"))
-                      }
-                    />
                   </div>
                   {rsvpPanel === "attendance" ? (
                     <RsvpAttendanceDetail
-                      guests={rsvp.guests ?? []}
-                      onClose={() => setRsvpPanel(null)}
-                      t={t}
-                    />
-                  ) : null}
-                  {rsvpPanel === "companions" ? (
-                    <RsvpCompanionsDetail
                       guests={rsvp.guests ?? []}
                       onClose={() => setRsvpPanel(null)}
                       t={t}
@@ -820,9 +804,6 @@ export default function CoupleDashboardPage() {
                           {g.guestName}
                           <span className="ms-2 text-sm font-normal text-royal-brown/80">
                             — {t("attendance")}: {attendanceLabel}
-                            {g.companionsCount > 0
-                              ? ` (${t("companions")}: ${g.companionsCount})`
-                              : ""}
                           </span>
                         </p>
                         <p className="mt-1 break-all font-mono text-xs text-royal-brown/80">{url}</p>
@@ -963,48 +944,6 @@ function RsvpGuestColumn({
             </li>
           ))
         )}
-      </ul>
-    </div>
-  );
-}
-
-function RsvpCompanionsDetail({
-  guests,
-  onClose,
-  t,
-}: {
-  guests: RsvpDashboardPayload["guests"];
-  onClose: () => void;
-  t: TFn;
-}) {
-  const sorted = [...guests].sort((a, b) =>
-    a.guestName.localeCompare(b.guestName, undefined, { sensitivity: "base" }),
-  );
-
-  return (
-    <div className="mt-4 space-y-3 rounded-xl border border-royal-gold/35 bg-white/90 p-4 shadow-sm">
-      <div className="flex flex-wrap items-center justify-between gap-2">
-        <h3 className="text-base font-semibold text-royal-brown">{t("rsvpDetailCompanions")}</h3>
-        <button
-          type="button"
-          className="rounded-lg px-3 py-1 text-sm text-royal-gold underline hover:bg-royal-cream"
-          onClick={onClose}
-        >
-          {t("rsvpClosePanel")}
-        </button>
-      </div>
-      <ul className="divide-y divide-royal-gold/15 rounded-lg border border-royal-gold/20">
-        {sorted.map((g) => (
-          <li
-            key={g._id}
-            className="flex items-center justify-between gap-3 px-3 py-2 text-sm"
-          >
-            <span className="min-w-0 font-medium">{g.guestName}</span>
-            <span className="shrink-0 tabular-nums text-royal-brown/90">
-              {g.companionsCount}
-            </span>
-          </li>
-        ))}
       </ul>
     </div>
   );

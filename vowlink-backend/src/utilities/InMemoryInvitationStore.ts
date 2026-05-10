@@ -126,7 +126,7 @@ export const inMemoryInvitationStore = {
     }
 
     target.attendanceStatus = payload.status;
-    target.companionsCount = payload.companionsCount;
+    target.companionsCount = 0;
     return target;
   },
 

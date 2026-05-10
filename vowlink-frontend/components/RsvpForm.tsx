@@ -10,18 +10,15 @@ export function RsvpForm({
   invitationSlug,
   guestSlug,
   initialStatus,
-  initialCompanionsCount,
   onRsvpSuccess,
 }: {
   invitationSlug: string;
   guestSlug: string;
   initialStatus: StatusType;
-  initialCompanionsCount: number;
   onRsvpSuccess?: () => void;
 }) {
   const { t } = useI18n();
   const [status, setStatus] = useState<StatusType>(initialStatus);
-  const [companionsCount, setCompanionsCount] = useState(initialCompanionsCount);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [feedbackMessage, setFeedbackMessage] = useState<string | null>(null);
 
@@ -31,7 +28,7 @@ export function RsvpForm({
     setFeedbackMessage(null);
 
     try {
-      await apiClient.updateRsvp(invitationSlug, guestSlug, status, companionsCount);
+      await apiClient.updateRsvp(invitationSlug, guestSlug, status);
       setFeedbackMessage(t("rsvpUpdated"));
       onRsvpSuccess?.();
     } catch {
@@ -58,19 +55,6 @@ export function RsvpForm({
           <option value="NOT_COMING">{t("notComing")}</option>
           <option value="PENDING">{t("pending")}</option>
         </select>
-      </div>
-
-      <div>
-        <label className="mb-2 block text-sm font-medium">{t("companions")}</label>
-        <input
-          className="min-h-11 w-full rounded-xl border border-royal-brown/20 bg-royal-cream px-4 py-2.5 text-base"
-          type="number"
-          min={0}
-          max={10}
-          inputMode="numeric"
-          value={companionsCount}
-          onChange={(event) => setCompanionsCount(Number(event.target.value))}
-        />
       </div>
 
       <button

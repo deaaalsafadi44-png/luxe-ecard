@@ -25,7 +25,6 @@ export const coupleGuestService = {
         guestName: g.guestName,
         guestSlug: g.guestSlug,
         attendanceStatus: g.attendanceStatus,
-        companionsCount: g.companionsCount,
       }));
     }
 
@@ -41,7 +40,6 @@ export const coupleGuestService = {
         guestName: g.guestName,
         guestSlug: g.guestSlug,
         attendanceStatus: g.attendanceStatus,
-        companionsCount: g.companionsCount,
       }));
   },
 
@@ -74,7 +72,6 @@ export const coupleGuestService = {
         guestName: created.guestName,
         guestSlug: created.guestSlug,
         attendanceStatus: created.attendanceStatus,
-        companionsCount: created.companionsCount,
       };
     }
 
@@ -106,7 +103,6 @@ export const coupleGuestService = {
       guestName: created.guestName,
       guestSlug: created.guestSlug,
       attendanceStatus: created.attendanceStatus,
-      companionsCount: created.companionsCount,
     };
   },
 };

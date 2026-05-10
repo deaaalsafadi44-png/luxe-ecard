@@ -365,7 +365,6 @@ export default function InvitationPage() {
                         invitationSlug={payload.invitation.slug}
                         guestSlug={payload.guest.guestSlug}
                         initialStatus={payload.guest.attendanceStatus}
-                        initialCompanionsCount={payload.guest.companionsCount}
                         onRsvpSuccess={() =>
                           setConfettiBurst((previous) => previous + 1)
                         }

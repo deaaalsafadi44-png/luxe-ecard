@@ -24,7 +24,7 @@ export default function InvitationDashboardPage() {
   const [coupleNames, setCoupleNames] = useState("");
   const [stats, setStats] = useState<RsvpDashboardPayload["stats"] | null>(null);
   const [guests, setGuests] = useState<RsvpDashboardPayload["guests"]>([]);
-  const [rsvpPanel, setRsvpPanel] = useState<null | "attendance" | "companions">(null);
+  const [rsvpPanel, setRsvpPanel] = useState<null | "attendance">(null);
 
   useEffect(() => {
     if (!decodedSlug) {
@@ -94,19 +94,9 @@ export default function InvitationDashboardPage() {
               />
               <StatCard label={t("notComing")} value={rsvpPayload.stats.notComingGuests} />
               <StatCard label={t("pending")} value={rsvpPayload.stats.pendingGuests} />
-              <StatCard
-                label={t("companions")}
-                value={rsvpPayload.stats.totalCompanions}
-                interactive
-                active={rsvpPanel === "companions"}
-                onClick={() => setRsvpPanel((p) => (p === "companions" ? null : "companions"))}
-              />
             </div>
             {rsvpPanel === "attendance" ? (
               <RsvpAttendanceDetail guests={rsvpPayload.guests} onClose={() => setRsvpPanel(null)} t={t} />
-            ) : null}
-            {rsvpPanel === "companions" ? (
-              <RsvpCompanionsDetail guests={rsvpPayload.guests} onClose={() => setRsvpPanel(null)} t={t} />
             ) : null}
             <div className="flex flex-wrap gap-3 pt-2">
               <button
@@ -253,39 +243,3 @@ function RsvpGuestColumn({
   );
 }
 
-function RsvpCompanionsDetail({
-  guests,
-  onClose,
-  t,
-}: {
-  guests: RsvpDashboardPayload["guests"];
-  onClose: () => void;
-  t: TFn;
-}) {
-  const sorted = [...guests].sort((a, b) =>
-    a.guestName.localeCompare(b.guestName, undefined, { sensitivity: "base" }),
-  );
-
-  return (
-    <div className="mt-4 space-y-3 rounded-xl border border-royal-gold/35 bg-white/90 p-4 shadow-sm">
-      <div className="flex flex-wrap items-center justify-between gap-2">
-        <h3 className="text-base font-semibold text-royal-brown">{t("rsvpDetailCompanions")}</h3>
-        <button
-          type="button"
-          className="rounded-lg px-3 py-1 text-sm text-royal-gold underline hover:bg-royal-cream"
-          onClick={onClose}
-        >
-          {t("rsvpClosePanel")}
-        </button>
-      </div>
-      <ul className="divide-y divide-royal-gold/15 rounded-lg border border-royal-gold/20">
-        {sorted.map((g) => (
-          <li key={g._id} className="flex items-center justify-between gap-3 px-3 py-2 text-sm">
-            <span className="min-w-0 font-medium">{g.guestName}</span>
-            <span className="shrink-0 tabular-nums text-royal-brown/90">{g.companionsCount}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}

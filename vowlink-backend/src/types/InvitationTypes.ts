@@ -28,5 +28,4 @@ export interface CreateInvitationPayload {
 
 export interface RSVPUpdatePayload {
   status: AttendanceStatus;
-  companionsCount: number;
 }

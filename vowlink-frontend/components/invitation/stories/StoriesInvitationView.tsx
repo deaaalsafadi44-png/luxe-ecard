@@ -519,7 +519,6 @@ export function StoriesInvitationView({
                     invitationSlug={payload.invitation.slug}
                     guestSlug={payload.guest.guestSlug}
                     initialStatus={payload.guest.attendanceStatus}
-                    initialCompanionsCount={payload.guest.companionsCount}
                     onRsvpSuccess={() => {
                       setConfettiBurst((c) => c + 1);
                       onRsvpSuccess();

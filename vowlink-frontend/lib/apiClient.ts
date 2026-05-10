@@ -57,7 +57,6 @@ export interface InvitationViewPayload {
     guestName: string;
     guestSlug: string;
     attendanceStatus: "COMING" | "NOT_COMING" | "PENDING";
-    companionsCount: number;
   } | null;
 }
 
@@ -104,7 +103,6 @@ export interface CoupleGuestRow {
   guestName: string;
   guestSlug: string;
   attendanceStatus: string;
-  companionsCount: number;
 }
 
 export interface RsvpDashboardPayload {
@@ -113,14 +111,12 @@ export interface RsvpDashboardPayload {
     comingGuests: number;
     notComingGuests: number;
     pendingGuests: number;
-    totalCompanions: number;
   };
   guests: Array<{
     _id: string;
     guestName: string;
     guestSlug: string;
     attendanceStatus: "COMING" | "NOT_COMING" | "PENDING";
-    companionsCount: number;
   }>;
 }
 
@@ -167,18 +163,12 @@ export const apiClient = {
     return (await response.json()) as InvitationViewPayload;
   },
 
-  async updateRsvp(
-    slug: string,
-    guestSlug: string,
-    status: string,
-    companions: number,
-  ) {
+  async updateRsvp(slug: string, guestSlug: string, status: string) {
     const response = await fetch(joinApiPath(`/rsvp/${slug}/${guestSlug}`), {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         status,
-        companionsCount: companions,
       }),
     });
 

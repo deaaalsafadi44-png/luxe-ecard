@@ -61,7 +61,6 @@ const createInvitationSchema = z.object({
 
 const rsvpSchema = z.object({
   status: z.enum(["COMING", "NOT_COMING", "PENDING"]),
-  companionsCount: z.coerce.number().int().min(0).max(10),
 });
 
 export const invitationManagementService = {
@@ -167,7 +166,7 @@ export const invitationManagementService = {
       },
       {
         attendanceStatus: payload.status,
-        companionsCount: payload.companionsCount,
+        companionsCount: 0,
       },
       { new: true },
     ).lean();

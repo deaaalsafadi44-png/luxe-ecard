@@ -8,7 +8,6 @@ import { CountdownTimer } from "@/components/CountdownTimer";
 import { RsvpForm } from "@/components/RsvpForm";
 import { InvitationConfetti } from "@/components/invitation/InvitationConfetti";
 import { InvitationGalleryLightbox } from "@/components/invitation/InvitationGalleryLightbox";
-import { InvitationShareButton } from "@/components/invitation/InvitationShareButton";
 import type { InvitationViewPayload } from "@/lib/apiClient";
 import type { InvitationExperience } from "@/lib/invitationExperience";
 import {
@@ -396,9 +395,6 @@ export function StoriesInvitationView({
                   {localizedExperience.hostFamilyLine}
                 </p>
               ) : null}
-              <div className="mt-8">
-                <InvitationShareButton />
-              </div>
             </div>
             <SwipeHint label={t("storiesSwipeHint")} />
           </SwiperSlide>

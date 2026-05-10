@@ -11,7 +11,6 @@ import { InvitationNoise } from "@/components/invitation/InvitationNoise";
 import { InvitationPageSkeleton } from "@/components/invitation/InvitationPageSkeleton";
 import { InvitationParticles } from "@/components/invitation/InvitationParticles";
 import { InvitationGalleryLightbox } from "@/components/invitation/InvitationGalleryLightbox";
-import { InvitationShareButton } from "@/components/invitation/InvitationShareButton";
 import { apiClient, type InvitationViewPayload } from "@/lib/apiClient";
 import {
   DEFAULT_INVITATION_THEME,
@@ -221,9 +220,6 @@ export default function InvitationPage() {
                 <p className="mt-8 text-center text-xs text-royal-brown/60">
                   {localizedInvitation.coupleNames}
                 </p>
-                <div className="mt-6 flex justify-center">
-                  <InvitationShareButton />
-                </div>
               </div>
             </InvitationDetailCard>
           </section>
@@ -382,7 +378,6 @@ export default function InvitationPage() {
                 <p className="text-center text-xs text-royal-brown/55 sm:text-start">
                   {t("madeWithVowlink")}
                 </p>
-                <InvitationShareButton />
               </footer>
             </div>
           </InvitationDetailCard>

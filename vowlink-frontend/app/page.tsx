@@ -33,12 +33,6 @@ export default function Home() {
           >
             {t("openPlatformPortal")}
           </Link>
-          <Link
-            href="/sample-wedding?guest=family-name"
-            className="inline-flex min-h-11 items-center justify-center rounded-xl border border-royal-brown/30 px-5 py-2.5 text-center text-sm font-medium sm:min-h-0"
-          >
-            {t("previewInvitationRoute")}
-          </Link>
         </nav>
       </section>
     </main>

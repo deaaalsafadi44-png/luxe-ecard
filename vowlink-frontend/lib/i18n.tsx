@@ -258,6 +258,11 @@ export type TranslationKey =
   | "storiesFontPlayfair"
   | "storiesFontCinzel"
   | "storiesFontPoppins"
+  | "storiesFontGreatvibes"
+  | "storiesFontLora"
+  | "storiesFontMontserrat"
+  | "storiesFontMerriweather"
+  | "storiesFontElMessiri"
   | "storiesFontSerif"
   | "storiesFontSans"
   | "storiesLayoutUseDefault"
@@ -494,6 +499,11 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     storiesFontPlayfair: "Playfair (فاخر)",
     storiesFontCinzel: "Cinzel (ملكي)",
     storiesFontPoppins: "Poppins (حديث)",
+    storiesFontGreatvibes: "Great Vibes (خط يد)",
+    storiesFontLora: "Lora (مقروء)",
+    storiesFontMontserrat: "Montserrat (هندسي)",
+    storiesFontMerriweather: "Merriweather (مريح)",
+    storiesFontElMessiri: "El Messiri (عربي رسمي)",
     storiesFontSerif: "Serif",
     storiesFontSans: "Sans",
     storiesLayoutUseDefault: "افتراضي",
@@ -780,6 +790,11 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     storiesFontPlayfair: "Playfair (elegant)",
     storiesFontCinzel: "Cinzel (royal)",
     storiesFontPoppins: "Poppins (modern)",
+    storiesFontGreatvibes: "Great Vibes (script)",
+    storiesFontLora: "Lora (readable serif)",
+    storiesFontMontserrat: "Montserrat (geometric)",
+    storiesFontMerriweather: "Merriweather (warm serif)",
+    storiesFontElMessiri: "El Messiri (Arabic UI)",
     storiesFontSerif: "Serif",
     storiesFontSans: "Sans",
     storiesLayoutUseDefault: "Default",

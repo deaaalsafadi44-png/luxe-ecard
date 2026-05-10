@@ -18,7 +18,12 @@ export type StoriesFontPreset =
   | "amiri"
   | "playfair"
   | "cinzel"
-  | "poppins";
+  | "poppins"
+  | "greatvibes"
+  | "lora"
+  | "montserrat"
+  | "merriweather"
+  | "elmessiri";
 export type StoriesTextSize = "sm" | "md" | "lg" | "xl";
 
 export interface StoriesSlideLayoutSettings {
@@ -111,6 +116,16 @@ export function headingFontClass(preset?: StoriesFontPreset): string {
       return "[font-family:var(--font-invitation-cinzel),serif]";
     case "poppins":
       return "[font-family:var(--font-invitation-poppins),var(--font-geist-sans),sans-serif]";
+    case "greatvibes":
+      return "[font-family:var(--font-invitation-greatvibes),cursive,serif]";
+    case "lora":
+      return "[font-family:var(--font-invitation-lora),serif]";
+    case "montserrat":
+      return "[font-family:var(--font-invitation-montserrat),var(--font-geist-sans),sans-serif]";
+    case "merriweather":
+      return "[font-family:var(--font-invitation-merriweather),serif]";
+    case "elmessiri":
+      return "[font-family:var(--font-invitation-elmessiri),var(--font-geist-sans),sans-serif]";
     case "serif":
       return "font-serif";
     case "sans":
@@ -132,6 +147,16 @@ export function bodyFontClass(preset?: StoriesFontPreset): string {
       return "[font-family:var(--font-invitation-cinzel),serif]";
     case "poppins":
       return "[font-family:var(--font-invitation-poppins),var(--font-geist-sans),sans-serif]";
+    case "greatvibes":
+      return "[font-family:var(--font-invitation-greatvibes),cursive,serif]";
+    case "lora":
+      return "[font-family:var(--font-invitation-lora),serif]";
+    case "montserrat":
+      return "[font-family:var(--font-invitation-montserrat),var(--font-geist-sans),sans-serif]";
+    case "merriweather":
+      return "[font-family:var(--font-invitation-merriweather),serif]";
+    case "elmessiri":
+      return "[font-family:var(--font-invitation-elmessiri),var(--font-geist-sans),sans-serif]";
     case "display":
       return "[font-family:var(--font-invitation-display),cursive,sans-serif]";
     case "serif":

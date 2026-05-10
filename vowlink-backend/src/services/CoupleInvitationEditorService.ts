@@ -35,6 +35,11 @@ const slideLayoutSchema = z
         "playfair",
         "cinzel",
         "poppins",
+        "greatvibes",
+        "lora",
+        "montserrat",
+        "merriweather",
+        "elmessiri",
       ])
       .optional(),
     bodyFont: z
@@ -47,6 +52,11 @@ const slideLayoutSchema = z
         "playfair",
         "cinzel",
         "poppins",
+        "greatvibes",
+        "lora",
+        "montserrat",
+        "merriweather",
+        "elmessiri",
       ])
       .optional(),
     headingSizePx: z.coerce.number().int().min(10).max(120).optional(),

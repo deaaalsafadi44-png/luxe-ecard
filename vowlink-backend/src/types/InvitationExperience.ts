@@ -19,7 +19,12 @@ export interface StoriesSlideLayoutSettings {
     | "amiri"
     | "playfair"
     | "cinzel"
-    | "poppins";
+    | "poppins"
+    | "greatvibes"
+    | "lora"
+    | "montserrat"
+    | "merriweather"
+    | "elmessiri";
   bodyFont?:
     | "display"
     | "serif"
@@ -28,7 +33,12 @@ export interface StoriesSlideLayoutSettings {
     | "amiri"
     | "playfair"
     | "cinzel"
-    | "poppins";
+    | "poppins"
+    | "greatvibes"
+    | "lora"
+    | "montserrat"
+    | "merriweather"
+    | "elmessiri";
   /** Exact sizes in px (preferred). */
   headingSizePx?: number;
   bodySizePx?: number;

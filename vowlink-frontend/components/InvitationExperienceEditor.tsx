@@ -49,17 +49,73 @@ function SlideLayoutFields({
 
   const palette = [
     "#ffffff",
+    "#fafafa",
     "#f5f5f5",
+    "#e7e5e4",
+    "#d6d3d1",
+    "#a8a29e",
+    "#78716c",
+    "#57534e",
+    "#44403c",
+    "#292524",
+    "#1c1917",
+    "#0c0a09",
+    "#fef2f2",
+    "#fecaca",
+    "#f87171",
+    "#ef4444",
+    "#b91c1c",
+    "#7f1d1d",
+    "#fff7ed",
+    "#fdba74",
+    "#fb923c",
+    "#ea580c",
+    "#c2410c",
+    "#fffbeb",
+    "#fde047",
+    "#facc15",
+    "#eab308",
+    "#ca8a04",
     "#f5f5dc",
     "#d4af37",
+    "#b45309",
+    "#92400e",
     "#4b3621",
+    "#f0fdf4",
+    "#86efac",
+    "#4ade80",
+    "#22c55e",
+    "#15803d",
+    "#14532d",
+    "#ecfeff",
+    "#67e8f9",
+    "#06b6d4",
+    "#0e7490",
+    "#164e63",
+    "#eff6ff",
+    "#93c5fd",
+    "#3b82f6",
+    "#1d4ed8",
+    "#1e40af",
+    "#1e3a8a",
+    "#eef2ff",
+    "#a5b4fc",
+    "#6366f1",
+    "#4338ca",
+    "#312e81",
+    "#faf5ff",
+    "#d8b4fe",
+    "#a855f7",
+    "#7e22ce",
+    "#581c87",
+    "#fdf2f8",
+    "#f9a8d4",
+    "#ec4899",
+    "#be185d",
+    "#831843",
     "#0f172a",
     "#111827",
-    "#ef4444",
-    "#22c55e",
-    "#3b82f6",
-    "#a855f7",
-    "#ec4899",
+    "#000000",
   ];
 
   const ColorPalette = ({
@@ -225,6 +281,11 @@ function SlideLayoutFields({
             <option value="playfair">{t("storiesFontPlayfair")}</option>
             <option value="cinzel">{t("storiesFontCinzel")}</option>
             <option value="poppins">{t("storiesFontPoppins")}</option>
+            <option value="greatvibes">{t("storiesFontGreatvibes")}</option>
+            <option value="lora">{t("storiesFontLora")}</option>
+            <option value="montserrat">{t("storiesFontMontserrat")}</option>
+            <option value="merriweather">{t("storiesFontMerriweather")}</option>
+            <option value="elmessiri">{t("storiesFontElMessiri")}</option>
             <option value="serif">{t("storiesFontSerif")}</option>
             <option value="sans">{t("storiesFontSans")}</option>
           </select>
@@ -248,6 +309,11 @@ function SlideLayoutFields({
             <option value="playfair">{t("storiesFontPlayfair")}</option>
             <option value="cinzel">{t("storiesFontCinzel")}</option>
             <option value="poppins">{t("storiesFontPoppins")}</option>
+            <option value="greatvibes">{t("storiesFontGreatvibes")}</option>
+            <option value="lora">{t("storiesFontLora")}</option>
+            <option value="montserrat">{t("storiesFontMontserrat")}</option>
+            <option value="merriweather">{t("storiesFontMerriweather")}</option>
+            <option value="elmessiri">{t("storiesFontElMessiri")}</option>
             <option value="serif">{t("storiesFontSerif")}</option>
             <option value="sans">{t("storiesFontSans")}</option>
           </select>

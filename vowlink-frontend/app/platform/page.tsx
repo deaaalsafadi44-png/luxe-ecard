@@ -26,8 +26,6 @@ export default function PlatformDashboardPage() {
 
   const [createEmail, setCreateEmail] = useState("");
   const [createPassword, setCreatePassword] = useState("");
-  const [createSlug, setCreateSlug] = useState("");
-  const [allowCreateInvitation, setAllowCreateInvitation] = useState(false);
 
   const load = useCallback(async () => {
     const session = readPlatformAuth();
@@ -89,23 +87,17 @@ export default function PlatformDashboardPage() {
 
   const createCouple = async () => {
     if (!auth) return;
-    if (!allowCreateInvitation && !createSlug.trim()) {
-      setFeedback(t("genericError"));
-      return;
-    }
     setFeedback(null);
     try {
       await apiClient.platformCreateCoupleAccount(auth.token, {
         email: createEmail,
         password: createPassword,
-        invitationSlug: allowCreateInvitation ? "" : createSlug.trim(),
-        allowCreateInvitation,
+        invitationSlug: "",
+        allowCreateInvitation: true,
       });
       setFeedback(t("accountCreatedSuccess"));
       setCreateEmail("");
       setCreatePassword("");
-      setCreateSlug("");
-      setAllowCreateInvitation(false);
     } catch (err) {
       setFeedback(err instanceof Error ? err.message : t("genericError"));
     }
@@ -206,17 +198,6 @@ export default function PlatformDashboardPage() {
 
         <section className="rounded-2xl border border-royal-gold/30 bg-white p-4 sm:p-6">
           <h2 className="text-lg font-semibold">{t("createCoupleAccountSection")}</h2>
-          <label className="mt-4 flex cursor-pointer items-start gap-2 text-sm">
-            <input
-              type="checkbox"
-              checked={allowCreateInvitation}
-              onChange={(e) => {
-                setAllowCreateInvitation(e.target.checked);
-                if (e.target.checked) setCreateSlug("");
-              }}
-            />
-            <span>{t("allowCreateInvitationCheckbox")}</span>
-          </label>
           <div className="mt-4 grid gap-3 md:grid-cols-2">
             <input
               className="min-h-11 rounded-xl border px-4 py-2.5 text-base"
@@ -231,13 +212,6 @@ export default function PlatformDashboardPage() {
               type="password"
               value={createPassword}
               onChange={(e) => setCreatePassword(e.target.value)}
-            />
-            <input
-              className="min-h-11 rounded-xl border px-4 py-2.5 text-base md:col-span-2 disabled:opacity-50"
-              placeholder={t("coupleInviteSlug")}
-              value={createSlug}
-              disabled={allowCreateInvitation}
-              onChange={(e) => setCreateSlug(e.target.value)}
             />
           </div>
           <button

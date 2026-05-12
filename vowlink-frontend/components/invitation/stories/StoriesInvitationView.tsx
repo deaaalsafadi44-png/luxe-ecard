@@ -344,6 +344,14 @@ export function StoriesInvitationView({
         >
           <SwiperSlide className="!flex min-h-dvh flex-col px-5 pt-[max(3.5rem,env(safe-area-inset-top))]">
             <div className={storiesSlideOuterClass(L.opening)}>
+              {guestGreeting ? (
+                <p
+                  className={`mb-4 max-w-lg text-pretty font-medium ${bodyFontClass(L.opening.bodyFont)} ${!L.opening.bodyColor ? "text-white/95" : ""}`}
+                  style={bodyStyleFor(L.opening)}
+                >
+                  {guestGreeting}
+                </p>
+              ) : null}
               {localizedExperience.openingVerse?.trim() ? (
                 <p
                   className={`max-w-md text-pretty ${bodyFontClass(L.opening.bodyFont)} ${!L.opening.bodyColor ? "text-white/95" : ""}`}
@@ -374,14 +382,6 @@ export function StoriesInvitationView({
               >
                 {localizedInvitation.coupleNames}
               </h1>
-              {guestGreeting ? (
-                <p
-                  className={`mt-4 max-w-lg text-pretty font-medium ${bodyFontClass(L.opening.bodyFont)} ${!L.opening.bodyColor ? "text-white/95" : ""}`}
-                  style={bodyStyleFor(L.opening)}
-                >
-                  {guestGreeting}
-                </p>
-              ) : null}
               {(localizedExperience.parentsLeft?.trim() ||
                 localizedExperience.parentsRight?.trim()) && (
                 <div className="mt-6 grid w-full max-w-lg grid-cols-1 gap-3 sm:grid-cols-2">

@@ -40,6 +40,8 @@ const seedInMemory = () => {
         guestSlug: normalizedGuest,
         attendanceStatus: "PENDING",
         companionsCount: 0,
+        allowedCompanions: 0,
+        tableNumber: "",
       },
     ]);
   }

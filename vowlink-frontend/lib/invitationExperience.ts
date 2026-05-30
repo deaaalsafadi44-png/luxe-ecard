@@ -116,6 +116,39 @@ export function resolveBackgroundImageUrls(
  * If the template is empty, uses `defaultWelcomePhrase` (e.g. "أهلاً") + name.
  * Legacy templates may still use `{guestName}`; that placeholder is replaced.
  */
+/** Total guests in party: the invitee + allowed companions. */
+export function guestPartySize(allowedCompanions: number): number {
+  const n = Number.isFinite(allowedCompanions) ? allowedCompanions : 0;
+  return 1 + Math.max(0, Math.round(n));
+}
+
+/**
+ * Per-guest RSVP line: party size and optional table (Arabic/English via caller).
+ * Returns null when there is nothing to show (no table and party size is 1 with no table).
+ */
+export function formatGuestPartyTableLine(
+  allowedCompanions: number,
+  tableNumber: string | undefined,
+  formatters: {
+    partyAndTable: (partySize: number, table: string) => string;
+    partyOnly: (partySize: number) => string;
+    tableOnly: (table: string) => string;
+  },
+): string | null {
+  const partySize = guestPartySize(allowedCompanions);
+  const table = tableNumber?.trim() ?? "";
+  if (table && partySize > 0) {
+    return formatters.partyAndTable(partySize, table);
+  }
+  if (table) {
+    return formatters.tableOnly(table);
+  }
+  if (partySize > 0) {
+    return formatters.partyOnly(partySize);
+  }
+  return null;
+}
+
 export function resolveGuestWelcomeMessage(
   template: string | undefined,
   guestName: string,

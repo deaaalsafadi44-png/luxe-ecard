@@ -74,6 +74,8 @@ export const invitationManagementService = {
       ),
       attendanceStatus: "PENDING" as const,
       companionsCount: 0,
+      allowedCompanions: 0,
+      tableNumber: "",
     }));
 
     if (mongoose.connection.readyState !== 1) {
@@ -114,6 +116,8 @@ export const invitationManagementService = {
           invitationId: invitation._id,
           guestName: guestRecord.guestName,
           guestSlug: guestRecord.guestSlug,
+          allowedCompanions: guestRecord.allowedCompanions,
+          tableNumber: guestRecord.tableNumber,
         })),
       );
     }

@@ -7,7 +7,12 @@ export interface GuestDocument extends Document {
   guestName: string;
   guestSlug: string;
   attendanceStatus: AttendanceResponse;
+  /** RSVP companions actually confirmed (legacy; not shown to guests). */
   companionsCount: number;
+  /** How many companions this guest may bring (party size = 1 + this). */
+  allowedCompanions: number;
+  /** Assigned table label/number for seating. */
+  tableNumber: string;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -40,6 +45,17 @@ const GuestSchema = new Schema<GuestDocument>(
       type: Number,
       min: 0,
       default: 0,
+    },
+    allowedCompanions: {
+      type: Number,
+      min: 0,
+      max: 20,
+      default: 0,
+    },
+    tableNumber: {
+      type: String,
+      trim: true,
+      default: "",
     },
   },
   {

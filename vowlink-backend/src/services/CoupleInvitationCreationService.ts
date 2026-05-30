@@ -132,6 +132,8 @@ export const coupleInvitationCreationService = {
         ),
         attendanceStatus: "PENDING" as const,
         companionsCount: 0,
+        allowedCompanions: 0,
+        tableNumber: "",
       }));
 
       const invitation = inMemoryInvitationStore.createInvitation({
@@ -204,6 +206,8 @@ export const coupleInvitationCreationService = {
       ),
       attendanceStatus: "PENDING" as const,
       companionsCount: 0,
+      allowedCompanions: 0,
+      tableNumber: "",
     }));
 
     const invitation = await InvitationModel.create({
@@ -231,6 +235,8 @@ export const coupleInvitationCreationService = {
           invitationId: invitation._id,
           guestName: guestRecord.guestName,
           guestSlug: guestRecord.guestSlug,
+          allowedCompanions: guestRecord.allowedCompanions,
+          tableNumber: guestRecord.tableNumber,
         })),
       );
     }

@@ -114,6 +114,13 @@ export type TranslationKey =
   | "copyGuestLink"
   | "guestLinkCopied"
   | "guestNameForLink"
+  | "guestAllowedCompanions"
+  | "guestAllowedCompanionsHelp"
+  | "guestTableNumber"
+  | "guestPartyAndTableLine"
+  | "guestPartyCountLine"
+  | "guestTableLine"
+  | "guestListPartyTable"
   | "accountNeedsPermission"
   | "disableFromPlatformHint"
   | "draftStateHint"
@@ -384,6 +391,14 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     copyGuestLink: "نسخ الرابط",
     guestLinkCopied: "تم النسخ.",
     guestNameForLink: "اسم الضيف للدعوة",
+    guestAllowedCompanions: "عدد المرافقين المسموح",
+    guestAllowedCompanionsHelp:
+      "عدد الأشخاص الإضافيين مع الضيف (مثال: 1 = الضيف + مرافق واحد، أي شخصين).",
+    guestTableNumber: "رقم الطاولة",
+    guestPartyAndTableLine: "عدد الأشخاص ({count}) الطاولة رقم ({table})",
+    guestPartyCountLine: "عدد الأشخاص ({count})",
+    guestTableLine: "الطاولة رقم ({table})",
+    guestListPartyTable: "الأشخاص: {count} — الطاولة: {table}",
     accountNeedsPermission:
       "هذا الحساب غير مرتبط بدعوة وليس لديه صلاحية إنشاء. تواصلوا مع مالك المنصة.",
     disableFromPlatformHint:
@@ -675,6 +690,14 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     copyGuestLink: "Copy link",
     guestLinkCopied: "Copied.",
     guestNameForLink: "Guest name (for the invite)",
+    guestAllowedCompanions: "Allowed companions",
+    guestAllowedCompanionsHelp:
+      "Extra people with the guest (e.g. 1 = guest + one companion, 2 people total).",
+    guestTableNumber: "Table number",
+    guestPartyAndTableLine: "Party size ({count}) — Table ({table})",
+    guestPartyCountLine: "Party size ({count})",
+    guestTableLine: "Table ({table})",
+    guestListPartyTable: "Party: {count} — Table: {table}",
     accountNeedsPermission:
       "This account is not linked to an invitation and cannot create one. Contact the platform owner.",
     disableFromPlatformHint:

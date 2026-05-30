@@ -57,6 +57,8 @@ export interface InvitationViewPayload {
     guestName: string;
     guestSlug: string;
     attendanceStatus: "COMING" | "NOT_COMING" | "PENDING";
+    allowedCompanions: number;
+    tableNumber: string;
   } | null;
 }
 
@@ -103,6 +105,8 @@ export interface CoupleGuestRow {
   guestName: string;
   guestSlug: string;
   attendanceStatus: string;
+  allowedCompanions: number;
+  tableNumber: string;
 }
 
 export interface RsvpDashboardPayload {
@@ -380,7 +384,12 @@ export const apiClient = {
 
   async coupleAddGuest(
     token: string,
-    body: { guestName: string; guestSlug?: string },
+    body: {
+      guestName: string;
+      guestSlug?: string;
+      allowedCompanions?: number;
+      tableNumber?: string;
+    },
   ) {
     const response = await fetch(joinApiPath("/couple/guests"), {
       method: "POST",

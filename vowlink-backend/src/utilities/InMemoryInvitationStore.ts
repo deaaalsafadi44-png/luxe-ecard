@@ -30,6 +30,8 @@ interface MemoryGuestRecord {
   guestSlug: string;
   attendanceStatus: AttendanceStatus;
   companionsCount: number;
+  allowedCompanions: number;
+  tableNumber: string;
 }
 
 const invitations = new Map<string, MemoryInvitationRecord>();

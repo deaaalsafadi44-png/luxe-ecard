@@ -9,6 +9,8 @@ import { inMemoryUserStore } from "../utilities/InMemoryUserStore";
 const addGuestSchema = z.object({
   guestName: z.string().trim().min(1),
   guestSlug: z.string().trim().min(1).optional(),
+  allowedCompanions: z.coerce.number().int().min(0).max(20).optional().default(0),
+  tableNumber: z.string().trim().max(32).optional().default(""),
 });
 
 export const coupleGuestService = {
@@ -25,6 +27,8 @@ export const coupleGuestService = {
         guestName: g.guestName,
         guestSlug: g.guestSlug,
         attendanceStatus: g.attendanceStatus,
+        allowedCompanions: g.allowedCompanions ?? 0,
+        tableNumber: g.tableNumber ?? "",
       }));
     }
 
@@ -40,6 +44,8 @@ export const coupleGuestService = {
         guestName: g.guestName,
         guestSlug: g.guestSlug,
         attendanceStatus: g.attendanceStatus,
+        allowedCompanions: g.allowedCompanions ?? 0,
+        tableNumber: g.tableNumber ?? "",
       }));
   },
 
@@ -65,6 +71,8 @@ export const coupleGuestService = {
         invitationId: user.invitationId,
         guestName: body.guestName.trim(),
         guestSlug,
+        allowedCompanions: body.allowedCompanions,
+        tableNumber: body.tableNumber,
       });
 
       return {
@@ -72,6 +80,8 @@ export const coupleGuestService = {
         guestName: created.guestName,
         guestSlug: created.guestSlug,
         attendanceStatus: created.attendanceStatus,
+        allowedCompanions: created.allowedCompanions,
+        tableNumber: created.tableNumber,
       };
     }
 
@@ -95,6 +105,8 @@ export const coupleGuestService = {
         guestSlug,
         attendanceStatus: "PENDING",
         companionsCount: 0,
+        allowedCompanions: body.allowedCompanions,
+        tableNumber: body.tableNumber,
       },
     ])[0];
 
@@ -103,6 +115,8 @@ export const coupleGuestService = {
       guestName: created.guestName,
       guestSlug: created.guestSlug,
       attendanceStatus: created.attendanceStatus,
+      allowedCompanions: created.allowedCompanions,
+      tableNumber: created.tableNumber,
     };
   },
 };

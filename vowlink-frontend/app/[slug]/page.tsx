@@ -19,6 +19,7 @@ import {
 } from "@/lib/invitationThemes";
 import { StoriesInvitationView } from "@/components/invitation/stories/StoriesInvitationView";
 import {
+  formatGuestPartyTableLine,
   mergeInvitationExperience,
   resolveGuestWelcomeMessage,
 } from "@/lib/invitationExperience";
@@ -175,6 +176,21 @@ export default function InvitationPage() {
     guestName,
     t("welcome"),
   );
+  const guestPartyTableLine = payload.guest
+    ? formatGuestPartyTableLine(
+        payload.guest.allowedCompanions ?? 0,
+        payload.guest.tableNumber,
+        {
+          partyAndTable: (count, table) =>
+            t("guestPartyAndTableLine")
+              .replace("{count}", String(count))
+              .replace("{table}", table),
+          partyOnly: (count) =>
+            t("guestPartyCountLine").replace("{count}", String(count)),
+          tableOnly: (table) => t("guestTableLine").replace("{table}", table),
+        },
+      )
+    : null;
 
   if (presentationMode === "stories") {
     return (
@@ -357,6 +373,11 @@ export default function InvitationPage() {
 
                   {payload.guest ? (
                     <div className="rounded-2xl border border-royal-gold/25 bg-white/90 p-4 shadow-sm ring-1 ring-white/25 backdrop-blur-sm">
+                      {guestPartyTableLine ? (
+                        <p className="mb-4 text-center text-sm font-medium text-royal-brown">
+                          {guestPartyTableLine}
+                        </p>
+                      ) : null}
                       <RsvpForm
                         invitationSlug={payload.invitation.slug}
                         guestSlug={payload.guest.guestSlug}

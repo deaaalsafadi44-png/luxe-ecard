@@ -89,6 +89,11 @@ const invitationPoppins = Poppins({
 export const metadata: Metadata = {
   title: "LUXECARD",
   description: "Luxury digital wedding invitations",
+  icons: {
+    icon: "/luxecard-logo.png",
+    shortcut: "/luxecard-logo.png",
+    apple: "/luxecard-logo.png",
+  },
 };
 
 export const viewport: Viewport = {

@@ -66,6 +66,8 @@ export default function CoupleDashboardPage() {
   /** Expanded RSVP detail: attendance lists */
   const [rsvpPanel, setRsvpPanel] = useState<null | "attendance">(null);
   const [newGuestName, setNewGuestName] = useState("");
+  const [newGuestAllowedCompanions, setNewGuestAllowedCompanions] = useState("0");
+  const [newGuestTableNumber, setNewGuestTableNumber] = useState("");
   const [copyHint, setCopyHint] = useState<string | null>(null);
 
   const [coupleNames, setCoupleNames] = useState("");
@@ -347,11 +349,19 @@ export default function CoupleDashboardPage() {
     if (!auth || !invitation) return;
     setFeedback(null);
     try {
+      const companions = Math.min(
+        20,
+        Math.max(0, Math.round(Number(newGuestAllowedCompanions) || 0)),
+      );
       const guest = await apiClient.coupleAddGuest(auth.token, {
         guestName: newGuestName,
+        allowedCompanions: companions,
+        tableNumber: newGuestTableNumber.trim(),
       });
       setGuests((prev) => [...prev, guest]);
       setNewGuestName("");
+      setNewGuestAllowedCompanions("0");
+      setNewGuestTableNumber("");
       await loadRsvp(auth.token);
     } catch (err) {
       setFeedback(err instanceof Error ? err.message : t("genericError"));
@@ -767,16 +777,46 @@ export default function CoupleDashboardPage() {
               <h2 className="text-lg font-semibold">{t("guestLinksTitle")}</h2>
               <p className="text-sm leading-relaxed text-royal-brown/85">{t("guestLinksExplain")}</p>
 
-              <div className="flex flex-wrap gap-2">
+              <div className="space-y-3">
                 <input
-                  className="min-w-0 flex-1 rounded-xl border px-4 py-2"
+                  className="w-full rounded-xl border px-4 py-2"
                   placeholder={t("guestNameForLink")}
                   value={newGuestName}
                   onChange={(e) => setNewGuestName(e.target.value)}
                 />
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <label className="block space-y-1">
+                    <span className="text-xs font-medium text-royal-brown/90">
+                      {t("guestAllowedCompanions")}
+                    </span>
+                    <input
+                      type="number"
+                      min={0}
+                      max={20}
+                      inputMode="numeric"
+                      className="w-full rounded-xl border px-4 py-2"
+                      value={newGuestAllowedCompanions}
+                      onChange={(e) => setNewGuestAllowedCompanions(e.target.value)}
+                    />
+                    <span className="text-[11px] text-royal-brown/65">
+                      {t("guestAllowedCompanionsHelp")}
+                    </span>
+                  </label>
+                  <label className="block space-y-1">
+                    <span className="text-xs font-medium text-royal-brown/90">
+                      {t("guestTableNumber")}
+                    </span>
+                    <input
+                      className="w-full rounded-xl border px-4 py-2"
+                      placeholder="20"
+                      value={newGuestTableNumber}
+                      onChange={(e) => setNewGuestTableNumber(e.target.value)}
+                    />
+                  </label>
+                </div>
                 <button
                   type="button"
-                  className="rounded-xl bg-royal-gold px-4 py-2 text-sm font-medium text-royal-brown"
+                  className="w-full rounded-xl bg-royal-gold px-4 py-2 text-sm font-medium text-royal-brown sm:w-auto"
                   onClick={() => void addGuest()}
                 >
                   {t("addGuest")}
@@ -805,6 +845,11 @@ export default function CoupleDashboardPage() {
                           <span className="ms-2 text-sm font-normal text-royal-brown/80">
                             — {t("attendance")}: {attendanceLabel}
                           </span>
+                        </p>
+                        <p className="mt-1 text-xs text-royal-brown/75">
+                          {t("guestListPartyTable")
+                            .replace("{count}", String(1 + (g.allowedCompanions ?? 0)))
+                            .replace("{table}", g.tableNumber?.trim() || "—")}
                         </p>
                         <p className="mt-1 break-all font-mono text-xs text-royal-brown/80">{url}</p>
                         <button

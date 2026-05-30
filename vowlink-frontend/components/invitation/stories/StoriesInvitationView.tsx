@@ -11,6 +11,7 @@ import { InvitationGalleryLightbox } from "@/components/invitation/InvitationGal
 import type { InvitationViewPayload } from "@/lib/apiClient";
 import type { InvitationExperience } from "@/lib/invitationExperience";
 import {
+  formatGuestPartyTableLine,
   resolveBackgroundImageUrls,
   resolveGuestWelcomeMessage,
   shouldShowVideoBackground,
@@ -170,6 +171,21 @@ export function StoriesInvitationView({
         t("welcome"),
       )
     : "";
+  const guestPartyTableLine = payload.guest
+    ? formatGuestPartyTableLine(
+        payload.guest.allowedCompanions ?? 0,
+        payload.guest.tableNumber,
+        {
+          partyAndTable: (count, table) =>
+            t("guestPartyAndTableLine")
+              .replace("{count}", String(count))
+              .replace("{table}", table),
+          partyOnly: (count) =>
+            t("guestPartyCountLine").replace("{count}", String(count)),
+          tableOnly: (table) => t("guestTableLine").replace("{table}", table),
+        },
+      )
+    : null;
   const bgUrls = useMemo(
     () => resolveBackgroundImageUrls(localizedExperience, coverUrl),
     [localizedExperience, coverUrl],
@@ -529,6 +545,14 @@ export function StoriesInvitationView({
               >
                 {localizedExperience.rsvpIntroHeading?.trim() || t("storiesBeOurGuest")}
               </h2>
+              {guestPartyTableLine ? (
+                <p
+                  className={`mt-4 max-w-md ${bodyFontClass(L.rsvp.bodyFont)} ${!L.rsvp.bodyColor ? "text-white/95" : ""}`}
+                  style={bodyStyleFor(L.rsvp)}
+                >
+                  {guestPartyTableLine}
+                </p>
+              ) : null}
               {localizedExperience.rsvpDeadlineText?.trim() ? (
                 <p
                   className={`mt-4 max-w-md ${bodyFontClass(L.rsvp.bodyFont)} ${!L.rsvp.bodyColor ? "text-white/85" : ""}`}

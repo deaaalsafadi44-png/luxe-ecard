@@ -274,6 +274,7 @@ export type TranslationKey =
   | "storiesFontSans"
   | "storiesLayoutUseDefault"
   | "storiesCeremonyVenueNote"
+  | "storiesCeremonyTitleHelp"
   | "storiesGiftImage"
   | "storiesUploadGiftImage"
   | "englishContentOptional"
@@ -524,6 +525,8 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     storiesLayoutUseDefault: "افتراضي",
     storiesCeremonyVenueNote:
       "يُعرض اسم المكان والعنوان من حقول الدعوة الرئيسية؛ يفتح زر الخريطة رابط Google Maps في نافذة جديدة.",
+    storiesCeremonyTitleHelp:
+      "هذا العنوان الذي يظهر أعلى شريحة الموعد والمكان (مثل «حفل الزفاف»). اتركه فارغاً لاستخدام الافتراضي، أو اكتب النص الذي تريده.",
     storiesGiftImage: "صورة شريحة الهدايا (اختياري)",
     storiesUploadGiftImage: "رفع صورة للهدايا",
     englishContentOptional: "نسخة باللغة الإنجليزية (اختياري)",
@@ -552,7 +555,7 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     storiesFieldCountdownTagline: "عنوان شريحة العد التنازلي",
     storiesFieldPolaroidCaption: "نص تحت صورة البولارويد",
     storiesFieldGalleryMessage: "رسالة دعوة لاستعراض المعرض",
-    storiesFieldCeremonyTitle: "عنوان شريحة الموعد والمكان",
+    storiesFieldCeremonyTitle: "عنوان حفل الزفاف (قابل للتعديل)",
     storiesFieldRsvpHeading: "عنوان شريحة RSVP",
     storiesFieldRsvpDeadline: "ملاحظة موعد آخر رد",
     storiesShowGiftSlide: "إظهار شريحة الهدايا / التحويل",
@@ -571,7 +574,7 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     storiesFieldInvitationParagraphEn: "فقرة الدعوة (EN)",
     storiesFieldHostFamilyEn: "سطر العائلة المضيفة (EN)",
     storiesFieldCountdownTaglineEn: "عنوان شريحة العد التنازلي (EN)",
-    storiesFieldCeremonyTitleEn: "عنوان شريحة الموعد والمكان (EN)",
+    storiesFieldCeremonyTitleEn: "عنوان حفل الزفاف (EN)",
     storiesFieldPolaroidCaptionEn: "نص تحت صورة البولارويد (EN)",
     storiesFieldGalleryMessageEn: "رسالة المعرض (EN)",
     storiesFieldRsvpHeadingEn: "عنوان شريحة RSVP (EN)",
@@ -823,6 +826,8 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     storiesLayoutUseDefault: "Default",
     storiesCeremonyVenueNote:
       "Venue name and address come from your main invitation fields; the map button opens Google Maps in a new tab.",
+    storiesCeremonyTitleHelp:
+      "This is the heading on the date & venue slide (e.g. “Wedding ceremony”). Leave empty for the default, or type your own title.",
     storiesGiftImage: "Gift slide image (optional)",
     storiesUploadGiftImage: "Upload gift image",
     englishContentOptional: "English version (optional)",
@@ -852,7 +857,7 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     storiesFieldCountdownTagline: "Countdown slide tagline",
     storiesFieldPolaroidCaption: "Polaroid caption (under photo)",
     storiesFieldGalleryMessage: "Gallery invite message",
-    storiesFieldCeremonyTitle: "Ceremony slide title",
+    storiesFieldCeremonyTitle: "Ceremony title (editable)",
     storiesFieldRsvpHeading: "RSVP slide heading",
     storiesFieldRsvpDeadline: "RSVP deadline note",
     storiesShowGiftSlide: "Show gift / transfer slide",
@@ -871,7 +876,7 @@ const translations: Record<LanguageCode, Record<TranslationKey, string>> = {
     storiesFieldInvitationParagraphEn: "Invitation paragraph (EN)",
     storiesFieldHostFamilyEn: "Host family line (EN)",
     storiesFieldCountdownTaglineEn: "Countdown slide tagline (EN)",
-    storiesFieldCeremonyTitleEn: "Ceremony slide title (EN)",
+    storiesFieldCeremonyTitleEn: "Ceremony title (EN)",
     storiesFieldPolaroidCaptionEn: "Polaroid caption (EN)",
     storiesFieldGalleryMessageEn: "Gallery invite message (EN)",
     storiesFieldRsvpHeadingEn: "RSVP slide heading (EN)",

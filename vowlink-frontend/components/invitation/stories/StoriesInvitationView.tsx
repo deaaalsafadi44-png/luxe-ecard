@@ -537,31 +537,31 @@ export function StoriesInvitationView({
             <SwipeHint label={t("storiesSwipeHint")} />
           </SwiperSlide>
 
-          <SwiperSlide className="!flex min-h-dvh flex-col px-5 pt-[max(3rem,env(safe-area-inset-top))]">
-            <div className={storiesSlideOuterClass(L.rsvp)}>
-              <h2
-                className={`${headingFontClass(L.rsvp.headingFont)} ${!L.rsvp.headingColor ? "text-white" : ""}`}
-                style={headingStyleFor(L.rsvp)}
-              >
-                {localizedExperience.rsvpIntroHeading?.trim() || t("storiesBeOurGuest")}
-              </h2>
-              {guestPartyTableLine ? (
-                <p
-                  className={`mt-4 max-w-md ${bodyFontClass(L.rsvp.bodyFont)} ${!L.rsvp.bodyColor ? "text-white/95" : ""}`}
-                  style={bodyStyleFor(L.rsvp)}
+          {payload.guest ? (
+            <SwiperSlide className="!flex min-h-dvh flex-col px-5 pt-[max(3rem,env(safe-area-inset-top))]">
+              <div className={storiesSlideOuterClass(L.rsvp)}>
+                <h2
+                  className={`${headingFontClass(L.rsvp.headingFont)} ${!L.rsvp.headingColor ? "text-white" : ""}`}
+                  style={headingStyleFor(L.rsvp)}
                 >
-                  {guestPartyTableLine}
-                </p>
-              ) : null}
-              {localizedExperience.rsvpDeadlineText?.trim() ? (
-                <p
-                  className={`mt-4 max-w-md ${bodyFontClass(L.rsvp.bodyFont)} ${!L.rsvp.bodyColor ? "text-white/85" : ""}`}
-                  style={bodyStyleFor(L.rsvp)}
-                >
-                  {localizedExperience.rsvpDeadlineText}
-                </p>
-              ) : null}
-              {payload.guest ? (
+                  {localizedExperience.rsvpIntroHeading?.trim() || t("storiesBeOurGuest")}
+                </h2>
+                {guestPartyTableLine ? (
+                  <p
+                    className={`mt-4 max-w-md ${bodyFontClass(L.rsvp.bodyFont)} ${!L.rsvp.bodyColor ? "text-white/95" : ""}`}
+                    style={bodyStyleFor(L.rsvp)}
+                  >
+                    {guestPartyTableLine}
+                  </p>
+                ) : null}
+                {localizedExperience.rsvpDeadlineText?.trim() ? (
+                  <p
+                    className={`mt-4 max-w-md ${bodyFontClass(L.rsvp.bodyFont)} ${!L.rsvp.bodyColor ? "text-white/85" : ""}`}
+                    style={bodyStyleFor(L.rsvp)}
+                  >
+                    {localizedExperience.rsvpDeadlineText}
+                  </p>
+                ) : null}
                 <div className="mt-8 w-full max-w-md rounded-2xl border border-white/25 bg-black/25 p-4 backdrop-blur-md">
                   <RsvpForm
                     invitationSlug={payload.invitation.slug}
@@ -573,17 +573,10 @@ export function StoriesInvitationView({
                     }}
                   />
                 </div>
-              ) : (
-                <p
-                  className={`mt-8 max-w-md text-pretty ${bodyFontClass(L.rsvp.bodyFont)} ${!L.rsvp.bodyColor ? "text-white/80" : ""}`}
-                  style={bodyStyleFor(L.rsvp)}
-                >
-                  {t("storiesRsvpPublicHint")}
-                </p>
-              )}
-            </div>
-            <SwipeHint label={t("storiesSwipeHint")} />
-          </SwiperSlide>
+              </div>
+              <SwipeHint label={t("storiesSwipeHint")} />
+            </SwiperSlide>
+          ) : null}
 
           {showGift ? (
             <SwiperSlide className="!flex min-h-dvh flex-col px-5 pt-[max(3rem,env(safe-area-inset-top))]">

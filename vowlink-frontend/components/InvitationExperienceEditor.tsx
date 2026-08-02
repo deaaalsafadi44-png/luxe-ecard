@@ -702,15 +702,33 @@ export function InvitationExperienceEditor({
               layout={experience.slideLayouts?.ceremony}
               onPatch={(p) => patchSlideLayout("ceremony", p)}
             />
-            {fieldBilingual(
-              "storiesFieldCeremonyTitle",
-              "storiesFieldCeremonyTitleEn",
-              experience.ceremonySlideTitle,
-              experience.ceremonySlideTitleEn,
-              (v) => patch({ ceremonySlideTitle: v }),
-              (v) => patch({ ceremonySlideTitleEn: v }),
-              1,
-            )}
+            <div className="space-y-2 rounded-xl border border-royal-gold/15 bg-white/50 p-3">
+              <label className="block space-y-1">
+                <span className="text-sm font-medium text-royal-brown">
+                  {t("storiesFieldCeremonyTitle")}
+                </span>
+                <input
+                  dir="rtl"
+                  className="w-full rounded-xl border px-3 py-2 text-sm"
+                  placeholder={t("storiesCeremonyDefaultTitle")}
+                  value={experience.ceremonySlideTitle ?? ""}
+                  onChange={(e) => patch({ ceremonySlideTitle: e.target.value })}
+                />
+              </label>
+              <label className="block space-y-1">
+                <span className="text-xs font-medium text-royal-brown/85">
+                  {t("storiesFieldCeremonyTitleEn")}
+                </span>
+                <input
+                  dir="ltr"
+                  className="w-full rounded-xl border border-royal-gold/20 bg-white px-3 py-2 text-sm"
+                  placeholder={t("storiesCeremonyDefaultTitle")}
+                  value={experience.ceremonySlideTitleEn ?? ""}
+                  onChange={(e) => patch({ ceremonySlideTitleEn: e.target.value })}
+                />
+              </label>
+              <p className="text-[11px] text-royal-brown/65">{t("storiesCeremonyTitleHelp")}</p>
+            </div>
             <p className="text-xs text-royal-brown/75">{t("storiesCeremonyVenueNote")}</p>
           </SlideSection>
 
